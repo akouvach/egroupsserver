@@ -14,6 +14,8 @@ echo "\n</br>host: ".$host;
 echo "\n</br>servername: ".$servername; 
 echo "\n</br>querystring: ".$querystring; 
 
+echo getenv('TIMES');
+
 echo "\n</br>-------------------------------------------------------</br>";
 
 // foreach($_SERVER as $key=>$value){
