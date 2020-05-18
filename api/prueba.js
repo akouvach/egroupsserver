@@ -49,6 +49,54 @@ async function traerUsuario(){
 
 }
 
+
+async function traerUsuarios(){
+
+    let url = urlBase + "usuarios.php";
+
+    let data = {
+        email: "akouvach@yahoo.com",
+        password : "akouvach"
+    }
+
+
+    let miInit = { 
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    mode: 'cors',
+                    cache: 'no-cache' , 
+                    credentials: 'omit', 
+                    body : JSON.stringify(data)
+                };
+
+    let rta = await fetch(url,miInit)
+        .then(function(response) {
+            return response.json();
+        })
+        .catch(function(error) {
+            console.log("error en el fetch", error.message);
+            return error;
+        });
+
+
+    console.log(rta);
+    if(rta.ok){
+        jwt.value = rta.jwt;
+        sessionStorage.setItem(tokenName, JSON.stringify(rta));    
+    } else {
+        jwt.value = "error";
+    }
+
+
+
+
+//    resultado.innerHTML = response;
+
+}
+
 async function buscarUno(){
 
 

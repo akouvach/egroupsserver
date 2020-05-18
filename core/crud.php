@@ -78,14 +78,14 @@ abstract class Crud extends Conexion {
                 $stmt->execute();
             }
 
-            // recorriendo uno a uno
-            $result = [];
-            while ($row = $stmt->fetch()) {
-                array_push($result, $row);
-            }
+            // // recorriendo uno a uno
+            // $result = [];
+            // while ($row = $stmt->fetch()) {
+            //     array_push($result, $row);
+            // }
 
             // Trayendo todos juntos
-            // $result = $stmt->fetchAll(PDO::FETCH_OBJ);
+            $result = $stmt->fetchAll(PDO::FETCH_OBJ);
             
             //  return array([$select, $filtro, $filtrosArray]);
             return $result;
