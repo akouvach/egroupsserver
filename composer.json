@@ -3,6 +3,11 @@
         "firebase/php-jwt": "^5.1"
     },
     "require-dev": {
-        "heroku/heroku-buildpack-php": "*"
-      }
+        "phpunit/phpunit": "9"
+    }, 
+    "autoload": {
+        "classmap": [
+            "src/"
+        ]
+    }
 }
