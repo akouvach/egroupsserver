@@ -2,7 +2,7 @@
 
 include_once '../core/jwt_core.php';
 
-require '../vendor/autoload.php';
+require '../../vendor/autoload.php';
 require_once "../controller/usuario_controller.php";
 
 use Firebase\JWT\JWT;

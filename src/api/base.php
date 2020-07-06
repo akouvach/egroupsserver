@@ -39,7 +39,7 @@ if($_SERVER['REQUEST_METHOD']=='POST') {
         $json = json_encode(["ok"=>false,"payload"=>utf8_encode($ex->getMessage())]);       
         http_response_code(500);
     } catch (Error $err){
-        $json = json_encode(["ok"=>false,"payload"=> utf8_encode($ex->getMessage())]);
+        $json = json_encode(["ok"=>false,"payload"=> utf8_encode($err->getMessage())]);
         http_response_code(500);
     }
    

@@ -23,7 +23,7 @@ function verificarSeguridad($key){
         } catch (Exception $ex){
             $json = (object)["ok"=>false,"errorcode"=>500,"payload"=>utf8_encode($ex->getMessage())];       
         } catch (Error $err){
-            $json = (object)["ok"=>false,"errorcode"=>500,"payload"=> utf8_encode($ex->getMessage())];
+            $json = (object)["ok"=>false,"errorcode"=>500,"payload"=> utf8_encode($err->getMessage())];
         }        
     } else {
         $json = (object)["ok"=>false,"errorcode"=>300,"payload"=> "Solo peticiones POST"];

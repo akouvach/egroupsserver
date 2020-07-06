@@ -100,39 +100,43 @@ abstract class Crud extends Conexion {
 
     }
 
-    public function getById($id){
+    // public function getById($id){
 
-        try {
-            $stmt = $this->pdo->prepare("select * from $this->table where id=?");
-            $stmt->execute(array($id));
-            $result = $stmt->fetch(PDO::FETCH_OBJ);
-            return $result;
-        } catch (PDOException $err) {
-            throw $err;
-        } catch (Error $err){
-            throw $err;
-        } catch (Exception $ex){
-            throw $ex;
-        }
+    //     try {
+    //         $stmt = $this->pdo->prepare("select * from $this->table where id=?");
+    //         $stmt->execute(array($id));
+    //         $result = $stmt->fetch(PDO::FETCH_OBJ);
+    //         return $result;
+    //     } catch (PDOException $err) {
+    //         throw $err;
+    //     } catch (Error $err){
+    //         throw $err;
+    //     } catch (Exception $ex){
+    //         throw $ex;
+    //     }
 
-    }
+    // }
 
-    public function delete($id){
+    // public function delByPrim(){
 
-        try {
-            $stmt = $this->pdo->prepare("delete from $this->table where id=?");
-            $stmt->execute(array($id));
-            $result = $stmt.mysqli_fetch_all(PDO::FETCH_OBJ);
-            return $result;
-        } catch (PDOException $err) {
-            throw $err;
-        } catch (Error $err){
-            throw $err;
-        } catch (Exception $ex){
-            throw $ex;
-        }
-            }
+    //     try {
+    //         $stmt = $this->pdo->prepare("delete from $this->table where id=?");
+    //         $stmt->execute(array($id));
+    //         $result = $stmt.mysqli_fetch_all(PDO::FETCH_OBJ);
+    //         print_r($result);
+    //         return $result;
+    //     } catch (PDOException $err) {
+    //         throw $err;
+    //     } catch (Error $err){
+    //         throw $err;
+    //     } catch (Exception $ex){
+    //         throw $ex;
+    //     }
+    // }
 
+    abstract function delByPrim();
+
+    abstract function getByPrim();
 
     abstract function create();
 

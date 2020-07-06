@@ -15,7 +15,7 @@ include_once '../core/headers.php';
 include_once '../core/jwt_core.php';
 include_once '../core/error_core.php';
 
-require '../vendor/autoload.php';
+require '../../vendor/autoload.php';
 
 use Firebase\JWT\JWT;
 
@@ -28,17 +28,18 @@ if($_SERVER['REQUEST_METHOD']=='POST') {
         //Recibo los datos enviados por un fetch post con json
         $json = file_get_contents('php://input');
         $data = json_decode($json);
+        $mi_jwt = new MiJwt();
 
         //Obtengo el usuario correspondiente
-        $result = getCredentials($data);
+        $result = $mi_jwt->getCredentials($data);
 
         //si me trae algún resultado es que encontró la combinación de usuario y contraseña
         if (!is_null($result) && sizeof($result)>0 ){
             $token = array(
-                "iss" => $iss,
-                "aud" => $aud,
-                "iat" => $iat,
-                "nbf" => $nbf,
+                "iss" => $mi_jwt::ISS,
+                "aud" => $mi_jwt::AUD,
+                "iat" => $mi_jwt::IAT,
+                "nbf" => $mi_jwt::NBF,
                 "data" => array(
                     "id" => $result[0]->id,
                     "nombre" => $result[0]->nombre,
@@ -48,7 +49,7 @@ if($_SERVER['REQUEST_METHOD']=='POST') {
             );
 
             // genero el token con los datos que me enviaron
-            $jwt = JWT::encode($token, $key);
+            $jwt = $mi_jwt->encode($token, $mi_jwt::KEY);
 
             //Seteo cabesera y devuelvo el token
             http_response_code(200);
@@ -64,7 +65,7 @@ if($_SERVER['REQUEST_METHOD']=='POST') {
         $json = json_encode(["ok"=>false,"payload"=>utf8_encode($ex->getMessage())]);       
         http_response_code(500);
     } catch (Error $err){
-        $json = json_encode(["ok"=>false,"payload"=> utf8_encode($ex->getMessage())]);
+        $json = json_encode(["ok"=>false,"payload"=> utf8_encode($err->getMessage())]);
         http_response_code(500);
     }
 

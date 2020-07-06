@@ -11,7 +11,7 @@ header("Content-Type: application/json; charset=UTF-8");
 include_once '../core/jwt_core.php';
 include_once '../core/error_core.php';
 
-require '../vendor/autoload.php';
+require '../autoload.php';
 
 use Firebase\JWT\JWT;
 
